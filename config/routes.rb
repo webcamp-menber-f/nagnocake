@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   }
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions" 
+  sessions: "admin/sessions"
   }
-  
+
   scope module: :public do
-   root :to => 'homes#top'  
+   root :to => 'homes#top'
    get 'about' => 'homes#top'
    get 'customers/withdraw' => 'customers#withdraw'
    patch 'customers/unsubscribe' => 'customers#unsubscribe'
@@ -22,9 +22,9 @@ Rails.application.routes.draw do
    resources :orders, only: [:new, :create, :index, :show]
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
-  
+
   namespace :admin do
-    get 'admin' => 'admin/homes#top'
+    root :to => 'homes#top'
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
