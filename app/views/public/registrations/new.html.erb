@@ -4,22 +4,66 @@
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <p>名前
+    <%= f.label :first_name, "(姓)" %>
+    <%= f.text_field :first_name, autofoucus: true, required: true, placeholder: "姓" %>
+    <%= f.label :last_name, "(名)" %>
+    <%= f.text_field :last_name, required: true, placeholder: "名" %>
+    </p>
   </div>
-  
 
   <div class="field">
+    <p>フリガナ
+    <%= f.label :first_name_f, "(セイ)" %>
+    <%= f.text_field :first_name_f, required: true, placeholder: "セイ" %>
+    <%= f.label :last_name_f, "(メイ)" %>
+    <%= f.text_field :last_name_f,  required: true, placeholder: "メイ"%>
+    </p>
+  </div>
+
+  <div class="field">
+    <p>メールアドレス
+    <%= f.email_field :email, required: true,placeholder: "sample" %>
+    </p>
+  </div>
+
+  <div class="field">
+    <p>郵便番号（ハイフンなし）
+    <%= f.label :post%>
+    <%= f.text_field :post,required: true, placeholder: "郵便番号" %>
+    </p>
+  </div>
+
+  <div class="field">
+    <p>住所
+    <%= f.label :address %>
+    <%= f.text_field :address, required: true,placeholder: "住所" %>
+    </p>
+  </div>
+
+  <div class="field">
+    <p>電話番号（ハイフンなし）
+    <%= f.label :phone %>
+    <%= f.text_field :phone, required: true,placeholder: "000000000" %>
+    </p>
+  </div>
+
+
+  <div class="field">
+    <p>パスワード（６文字以上）
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
+    <% end %>
+    <%= f.password_field :password, required: true %>
+    </p>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <p>パスワード（確認用）
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    </p>
   </div>
 
   <div class="actions">
@@ -27,4 +71,5 @@
   </div>
 <% end %>
 
-<%= render "public/shared/links" %>
+<h3>既に登録済みの方</h3>
+<p><%= render "public/shared/links" %>からログインしてください。</p>
