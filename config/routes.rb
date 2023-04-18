@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
    root :to => 'homes#top'
-   get 'about' => 'homes#top'
+   get 'about' => 'homes#about'
    get 'customers/withdraw' => 'customers#withdraw'
    patch 'customers/unsubscribe' => 'customers#unsubscribe'
    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
