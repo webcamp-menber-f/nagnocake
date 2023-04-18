@@ -1,8 +1,11 @@
 class Public::ItemsController < ApplicationController
   def index
+    @items= Item.all
+    @goods_genres = GoodsGenre.all
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
 
