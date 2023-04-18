@@ -1,7 +1,7 @@
 <div class='container'>
   <%= @customer.create_name %>さんの会員情報編集
   <table class='table'>
-   <%= form_with model:@customer,url:admin_customer_path(@customer), method: :patch, local: true do |f| %>
+   <%= form_with model:@customer, url:admin_customer_path(@customer), method: :patch, local: true do |f| %>
     <tr>
       <th><label for="customer_id">会員ID</label></th>
       <th><%= @customer.id %></th>
