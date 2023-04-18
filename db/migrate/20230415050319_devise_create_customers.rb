@@ -11,7 +11,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.string :last_name_f , null: false
       t.string :first_name_f , null: false
       t.string :post , null: false
-      t.text :address , null: false
+      t.text :place , null: false
       t.string :phone , null: false
       t.boolean :flag , default: false, null: false
 
