@@ -20,7 +20,13 @@ Rails.application.routes.draw do
    get 'customers/edit' => 'customers#edit'
    patch 'customers/update' => 'customers#update'
    resources :items, only: [:index, :show]
-   resources :cart_items, only: [:index, :update, :destroy, :create]
+   
+   resources :cart_items, only: [:index, :update, :destroy, :create] do
+     collection do
+       delete "destroy_all"
+      end
+  end
+  
    resources :orders, only: [:new, :create, :index, :show]
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
