@@ -3,6 +3,8 @@ class Item < ApplicationRecord
    has_many :order_item, dependent: :destroy
    has_many :cart, dependent: :destroy
    belongs_to :goods_genre
+   validates :price, presence: true
+
 
 
    def get_image
