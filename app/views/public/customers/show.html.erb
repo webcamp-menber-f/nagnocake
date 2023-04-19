@@ -1,0 +1,45 @@
+<h1>登録情報</h1>
+<%= link_to "編集する", customers_edit_path,class: "btn btn-success btn-lg"%>
+
+<div class='container'>
+<table class="table table-bordered">
+    <% Array(@customer).each do |customer| %>
+  <tr>
+    <th class="table-secondary">氏名</th>
+    <td>
+      <%= customer.first_name%>  <%= customer.last_name %>
+    </td>
+  </tr>
+  <tr>
+      <th class="table-secondary">カナ</th>
+      <td><%= customer.first_name_f %><%= customer.last_name_f %></td>
+  </tr>
+  <tr>
+      <th class="table-secondary">郵便番号</th>
+      <td><%= customer.post %></td>
+  </tr>
+  <tr>
+      <th class="table-secondary">住所</th>
+      <td><%= customer.place %></td>
+  </tr>
+  <tr>
+      <th class="table-secondary">電話番号</th>
+      <td> <%= customer.phone %></td>
+  </tr>
+  <tr>
+      <th class="table-secondary">メールアドレス</th>
+      <td><%= customer.email %></td>
+  </tr>
+  <%end%>
+  </table>
+  </div>
+
+  <div class="order">
+    <h2>配送先</h2>
+    <%= link_to "一覧を見る", addresses_path ,class: "btn btn-primary btn-lg" %>
+  </div>
+
+  <div class="item-oder">
+    <h2>注文履歴</h2>
+    <%= link_to "一覧を見る", orders_path , class: "btn btn-primary btn-lg" %>
+  </div>
