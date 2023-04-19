@@ -1,3 +1,3 @@
 class GoodsGenre < ApplicationRecord
-  has_many :item
+  has_many :items
 end

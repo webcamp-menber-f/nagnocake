@@ -1,13 +1,14 @@
 <table>
-<tbody>
+ <thead>
+   <tr>ジャンル検索</tr>
+ </thead>
+ <tbody>
   <% goods_genres.each do |goods_genre| %>
   <tr>
-     <% if goods_genre.is_active == true %>
      <td>
-       <%= link_to goods_genre.genre_name,item_path(goods_genre_id: goods_genre.id), class: "text-secondary"%>
+       <%= link_to goods_genre.genre_name,item_path(id: goods_genre.id), class: "text-secondary"%>
      </td>
-     <% end %>
   </tr>
   <% end %>
-</tbody>
+ </tbody>
 </table>
