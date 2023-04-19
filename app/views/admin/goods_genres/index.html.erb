@@ -1,0 +1,20 @@
+<div class='container'>
+  <table class='table table-hover table-inverse'>
+   <%= form_with model:@goods_genre, url:admin_goods_genres_path(@goods_genre),method: :post, local:true do |f| %>
+    <thead>
+     <th>ジャンル名</th>
+     <th><%= f.text_field:genre_name, placeholder: "ジャンル名" %></th>
+     <th><%= f.submit '新規登録',class: 'btn btn-success' %></th>
+    </thead>
+    <tbody>
+       <tr>ジャンル</tr>
+      <% @goods_genres.each do |goods_genre| %>
+       <tr>
+         <th><%= goods_genre.genre_name %></th>
+         <th><%= link_to '編集する', edit_admin_goods_genre_path(goods_genre), class: 'btn btn-success' %></th>
+       </tr>ss
+      <% end %>
+    </tbody>
+   <% end %>
+  </table>
+</div>
