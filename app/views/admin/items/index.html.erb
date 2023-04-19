@@ -1,0 +1,29 @@
+<div class='container'>
+ <h3>商品一覧</h3>
+  <table class='table table-hover table-inverse'>
+    <thead>
+     <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+     </tr>
+    </thead>
+  <tbody>
+    <% @items.each do |item| %>
+     <tr>
+       <td><%= item.id %></td>
+       <td><%= link_to item.item_name,admin_item_path(item) %></td>
+       <td><%= item.price %></td>
+       <td><%= GoodsGenre.find(item.goods_genre_id).genre_name %></td>
+       <td><%= item.status ? '販売停止中' : '販売中' %></td>
+     </tr>
+    <% end %>
+  </tbody>
+ </table>
+ <div>
+   <%= link_to '商品新規登録', new_admin_item_path, class: 'btn btn-success' %>
+ </div>
+  <%= paginate @items %>
+</div>
