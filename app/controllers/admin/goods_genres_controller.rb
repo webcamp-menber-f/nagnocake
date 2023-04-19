@@ -10,18 +10,19 @@ class Admin::GoodsGenresController < ApplicationController
   def create
     @goods_genre = GoodsGenre.new(goods_genre_params)
     @goods_genre.save
+          redirect_to admin_goods_genres_path,  notice: "You have updated book successfully."
   end
 
   def edit
-    @goods_genre = Goods_genre.find(params[:id])
+    @goods_genre = GoodsGenre.find(params[:id])
   end
 
   def update
-    @goods_genre = Goods_genre.find(params[:id])
+    @goods_genre = GoodsGenre.find(params[:id])
     if @goods_genre.update(goods_genre_params)
-      redirect_to admin_goods_genre_path(@goods_genre),  notice: "You have updated book successfully."
+      redirect_to admin_goods_genres_path,  notice: "You have updated book successfully."
     else
-      render "edit"
+      render edit
     end
   end
 
