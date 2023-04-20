@@ -18,7 +18,20 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def refect_customer
+    @customer = User.fing_by(email: params[:customer][:email])
+    if @customer
+      if @Customer.valid_password?(params[:user][:password]) && (@Customer.flag == false)
+        flash[:notice] = "退会済みです。再度ご登録してご利用ください。"
+        redirect_to new_customer_registration
+      else
+        flash[:notice] = "項目を入力してください"
+      end
+    end
+  end
+
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
