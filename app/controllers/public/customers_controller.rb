@@ -28,7 +28,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def unsubscribe
-    @customer = Customer
+    @customer = current_customer
     @customer.update(flag: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
