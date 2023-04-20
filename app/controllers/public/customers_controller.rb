@@ -4,11 +4,11 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
 
   end
-  
+
   def update_without_current_password(params, *options)
     params.delete(:current_password)
-    
-    if params[:password].blank? && params[:password_confirmation].blank? 
+
+    if params[:password].blank? && params[:password_confirmation].blank?
       params.delete(:password)
       params.delete(:password_confirmation)
     end
@@ -28,6 +28,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def unsubscribe
+    @customer = Customer
+    @customer.update(flag: true)
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path
   end
 
 end
