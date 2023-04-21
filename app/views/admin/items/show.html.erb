@@ -20,7 +20,7 @@
     </tr>
     <tr>
       <th><label for="item_price"><br>税込価格(税抜価格)</label></th>
-      <td><%= @item.add_tax_sales_price %> ( <%= @item.price %> )円</td>
+      <td><%= @item.add_tax_sales_price %> ( <%= @item.price.to_s(:delimited) %> )円</td>
     </tr>
     <tr>
       <th><label for="item_status">販売ステータス</label></th>

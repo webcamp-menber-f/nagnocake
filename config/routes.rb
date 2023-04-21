@@ -20,25 +20,24 @@ Rails.application.routes.draw do
    get 'customers/edit' => 'customers#edit'
    patch 'customers/update' => 'customers#update'
    resources :items, only: [:index, :show]
-   
+
    resources :cart_items, only: [:index, :update, :destroy, :create] do
      collection do
        delete "destroy_all"
       end
   end
-  
+
    resources :orders, only: [:new, :create, :index, :show]
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-   
+
   end
 
   namespace :admin do
-    root :to => 'homes#top'
-
+    root :to => 'items#index'
     resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :goods_genres, only:[:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:show, :update]
+    resources :orders, only: [:index, :show, :update]
     resources :order_items, only: [:update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
