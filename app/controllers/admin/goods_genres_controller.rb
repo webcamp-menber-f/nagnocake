@@ -28,6 +28,12 @@ class Admin::GoodsGenresController < ApplicationController
     end
   end
 
+  def destroy
+    @goods_genre = GoodsGenre.find(params[:id])
+    @goods_genre.destroy
+      redirect_to admin_goods_genres_path, notice: "Item was successfully deleted."
+  end
+
   private
 
   def goods_genre_params

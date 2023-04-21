@@ -16,7 +16,7 @@
     </tr>
     <tr>
       <th><label for="item_goods_genre">ジャンル</label></th>
-      <td><%= form.select :goods_genre_id.genre_name, options_for_select(GoodsGenre.all.map { |g| [g.genre_name, g.id] }) %></td>
+      <td><%= form.select :goods_genre_id, options_for_select(GoodsGenre.all.map { |g| [g.genre_name, g.id] }, selected: @item.goods_genre_id) %></td>
     </tr>
     <tr>
       <th><label for="item_price">税抜価格</label></th>
