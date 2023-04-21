@@ -1,8 +1,12 @@
 class Public::ItemsController < ApplicationController
-  def index
+ def index
     @items= Item.all
     @goods_genres = GoodsGenre.all
-    @item = Item.find_by(id: params[:id])
+       @item = Item.find_by(id: params[:id])
+    if params[:goods_genre_id].present?
+      @goods_genre = GoodsGenre.find(params[:goods_genre_id])
+      @items = @goods_genre.items
+    end
   end
 
   def show

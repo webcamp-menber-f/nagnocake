@@ -37,6 +37,9 @@
          <li>
            <%= link_to "ログイン",new_customer_session_path,class: 'nav-link text-dark' %>
          </li>
+         <li>
+           <%= link_to "ログアウト",destroy_admin_session_path,class: 'nav-link text-dark', method: :delete %>
+         </li>
         <% end %>
       <% elsif customer_signed_in? %>
          <li>
