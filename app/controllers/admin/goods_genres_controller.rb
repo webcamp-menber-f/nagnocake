@@ -1,5 +1,7 @@
 class Admin::GoodsGenresController < ApplicationController
 
+ before_action :authenticate_admin!
+
   def index
     @items=Item.all
     @goods_genres = GoodsGenre.all
@@ -24,6 +26,12 @@ class Admin::GoodsGenresController < ApplicationController
     else
       render edit
     end
+  end
+
+  def destroy
+    @goods_genre = GoodsGenre.find(params[:id])
+    @goods_genre.destroy
+      redirect_to admin_goods_genres_path, notice: "Item was successfully deleted."
   end
 
   private

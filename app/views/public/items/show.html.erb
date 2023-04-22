@@ -1,10 +1,13 @@
-<% if @item.is_active == TRUE %>
-<%= form_with(model: @cart,url: cart_items_path, method: :post,local: true)do|f| %>
- <%= f.label :count, "個数選択"　%>
+<p><%= image_tag(@item.get_image(200,200))%></p>
+<P>商品名：<%=@item.item_name %></P>
+<p>商品値段：￥<%=@item.price %></p>
+<%#if @item.status %>
+<%= form_with(model: @cart,url: carts_path, method: :post,local: true)do |f| %>
+ <P><%= f.label :count, "個数選択" %></p>
  <%= f.select :count,[1,2,3,4,5,6,7,8,9,10] %>
  <%= f.hidden_field :item_id, :value => @item.id %>
  <%= f.submit "カートに入れる" %>
- <% end %>
+ <%# end %>
 <% end %>
 
   

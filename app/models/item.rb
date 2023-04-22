@@ -7,7 +7,7 @@ class Item < ApplicationRecord
 
 
    def add_tax_sales_price
-        (self.price * 1.1).round
+        (self.price * 1.1).round.to_s(:delimited)
    end
 
    def get_image(width, height)
