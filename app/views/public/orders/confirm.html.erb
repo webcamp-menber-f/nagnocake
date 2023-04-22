@@ -1,0 +1,19 @@
+<h1>注文情報確認</h1>
+<%= @carts.each do |cart| %>
+  <%= cart.item.name %>
+  <%= (cart.item.price).to_s(:delimited) %>
+  <%= cart.quantity %>
+  <%= (cart.item.price*cart.quantity).to_s(:delimited) %>
+<%end%>
+<p>ご請求金額</p>
+<%= @total.to_s %>
+<p>お届け先</p>
+<%= @order.place %>
+
+<%= form_with model: @order, url: orders_path, local: true do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :place %>
+  <%= f.hidden_field :total_price, value: @total %>
+  <%= f.submit "注文を確定する" %>
+<%end%>
+
