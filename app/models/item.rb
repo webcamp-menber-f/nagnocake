@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
    has_one_attached :image
-   has_many :order_item, dependent: :destroy
-   has_many :cart, dependent: :destroy
+   has_many :order_items, dependent: :destroy
+   has_many :carts, dependent: :destroy
    belongs_to :goods_genre
    validates :price, presence: true
 

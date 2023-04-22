@@ -13,7 +13,7 @@ class Customer < ApplicationRecord
   def create_name_f
     first_name_f+" "+last_name_f
   end
-  
+
   def active_for_authentication?
     super && (flag == false)
   end
