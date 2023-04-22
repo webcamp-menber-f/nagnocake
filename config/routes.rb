@@ -21,7 +21,7 @@ Rails.application.routes.draw do
    patch 'customers/update' => 'customers#update'
    resources :items, only: [:index, :show]
 
-   resources :cart_items, only: [:index, :update, :destroy, :create] do
+   resources :carts, only: [:index, :update, :destroy, :create] do
      collection do
        delete "destroy_all"
       end
