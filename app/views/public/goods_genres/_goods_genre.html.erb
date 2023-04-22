@@ -1,12 +1,14 @@
 <table>
  <thead>
-   <tr>ジャンル検索</tr>
+   <tr>
+    <th>ジャンル検索</th>
+    </tr>
  </thead>
  <tbody>
   <% goods_genres.each do |goods_genre| %>
-  <tr>
-     <td>
-       <%= link_to goods_genre.genre_name,item_path(id: goods_genre.id), class: "text-secondary"%>
+    <tr>
+      <td>
+       <%= link_to goods_genre.genre_name,items_path(goods_genre_id: goods_genre.id), class: "text-secondary"%>
      </td>
   </tr>
   <% end %>

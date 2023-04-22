@@ -15,7 +15,7 @@
      <tr>
        <td><%= item.id %></td>
        <td><%= link_to item.item_name,admin_item_path(item) %></td>
-       <td><%= item.price %></td>
+       <td><%= item.price.to_s(:delimited)  %></td>
        <td><%= GoodsGenre.find(item.goods_genre_id).genre_name %></td>
        <td><%= item.status ? '販売停止中' : '販売中' %></td>
      </tr>
