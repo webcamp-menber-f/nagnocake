@@ -5,6 +5,7 @@ class Item < ApplicationRecord
    belongs_to :goods_genre
    validates :price, presence: true
 
+  scope :recent, -> {order(create_at: :desc) }
 
    def add_tax_sales_price
         (self.price * 1.1).round.to_s(:delimited)
