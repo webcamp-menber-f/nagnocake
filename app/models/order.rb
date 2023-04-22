@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  has_many :order_item
+  has_many :order_items
   belongs_to :customer
 
   enum pay: {credit_card:0, transfer: 1 }
