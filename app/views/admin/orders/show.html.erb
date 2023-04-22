@@ -1,0 +1,72 @@
+<div class='container'>
+  <h3>注文履歴詳細</h3>
+   <div class="row">
+    <div class="col-2">購入者</div>
+    <div class="col-10">
+     <%= link_to admin_customer_path(@order) do %>
+     <%= @order.customer.create_name %>
+     <% end %></div>
+   </div>
+   <div class="row">
+    <div class="col-2">注文日</div>
+    <div class="col-10"><%= @order.created_at %></div>
+   </div>
+   <div class="row">
+    <div class="col-2">配送先</div>
+    <div class="col-10"><%= @order.place %></div>
+    <div class="col-2"></div>
+    <div class="col-10"><%= @order.name %></div>
+   </div>
+   <div class="row">
+    <div class="col-2">支払方法</div>
+    <div class="col-10"><%= @order.pay %></div>
+   </div>
+   <div>
+    <div class="row">
+    <div class="col-2">注文ステータス</div>
+     <%= form_with model: [:admin, @order], method: :patch, local: true do |f| %>
+    <div class="col-10"><%= f.select :status, Order.statuses.keys, {}, class: "select-default" %>
+     <%= f.submit "更新", class: 'btn btn-primary' %></div>
+     <% end %>
+   </div>
+   <div class="row">
+     <div class="col-8">
+       <table class="table">
+         <thead>
+           <tr>
+             <th>商品名</th>
+             <th>単価（税込）</th>
+             <th>数量</th>
+             <th>小計</th>
+             <th>製作ステータス</th>
+             <th></th>
+           </tr>
+         </thead>
+        <%= form_with model:@order_item, method: :patch, local: true do |f| %>
+         <tbody>
+           <tr>
+             <th><%= @order_item.item.item_name %></th>
+             <th><%= (@order_item.money*1.1).floor.to_s(:delimited) %></th>
+             <th><%= @order_item.count %></th>
+             <th><%= ((@order_item.money * 1.1 * @order_item.count).floor).to_s(:delimited) %></th>
+             <th><%= f.select :status, OrderItem.statuses.keys, {}, class: "select-default" %></th>
+             <th><%= f.submit "更新", class: 'btn btn-primary' %></th>
+        <% end %>
+           </tr>
+         </tbody>
+       </table>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="col-6">商品合計</div> 
+      <div class="col-6"><%= (@order.total_price - @order.postage).to_s(:delimited) %></div>
+    </div>
+    <div class="col-4">
+      <div class="col-6">送料</div></div> 
+      <div class="col-6"><%= @order.postage %></div>
+    </div>
+    <div class="col-4">
+      <div class="col-6">請求金額合計</div> 
+      <div class="col-6"><%= @order.total_price.to_s(:delimited) %></div>
+    </div>
+</div>
