@@ -18,9 +18,9 @@
 <h4 class ="mb-3 pt-3">新着商品</h4>
        <div class="row">
          <% @new_items.each do|item| %>
-       <div class="col-md-4 mb-4">
+        <div class="col-sm-6 col-md-4 mb-4">
          <div class="card">
-       <%= link_to image_tag(item.get_image(200,200)),item_path(item.id) %>
+       <%= link_to image_tag(item.get_image(200,200),class: "card-img-top"),item_path(item.id) %>
         <div class="card-body">
       <h5 class="card-title">商品名：<%=item.item_name %></h5>
       <p class="card-text">商品値段：￥<%=item.price %></p>
