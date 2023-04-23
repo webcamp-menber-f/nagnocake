@@ -12,12 +12,13 @@ class Public::AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
-    if @address.save
+    if @address.postal_code.blank?
+      redirect_to  addresses_path , alert: "Postal code cannot be blank"
+    elsif @address.save
       flash[:notice] = "Address was successfully created."
       redirect_to addresses_path
     else
-      @addresses= Address.all
-      render :index
+     render :new
     end
   end
 
