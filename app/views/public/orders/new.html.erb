@@ -1,34 +1,54 @@
-<h3>支払い方法</h3>
-
+<div class = "container text-center mt-3">
 <%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
-  <%= f.radio_button :pay, Order.pays.key(0) %>
-  <%= f.label :pay_credit_card, Order.pays_i18n[:credit_card] %>
-
-  <%= f.radio_button :pay, Order.pays.key(1) %>
-  <%= f.label :pay_transfer, Order.pays_i18n[:transfer]%>
-
-  <%end%>
 
 
-<h3>お届け先</h3>
-  <%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
+    <h4>お支払い方法</h4>
+    <div>
+      <%= f.radio_button :pay, Order.pays.key(0) %>
+      <%= f.label :pay, Order.pays_i18n[:credit_card]%>
+    </div>
+    <div>
+      <%= f.radio_button :pay, Order.pays.key(1) %>
+      <%= f.label :pay, Order.pays_i18n[:transfer]%>
+    </div>
+
+<h4>お届け先</h4>
+    <div>
     <%= f.radio_button :address_number, 0 %>
     <%= f.label :address_number_0, "ご自身の住所" %>
+    </div>
+    <p>
     <%= current_customer.place %>
     <%= current_customer.first_name %>
     <%= current_customer.last_name %>
+    </p>
 
+    <div>
     <%= f.radio_button :address_number, 1 %>
     <%= f.label :address_number_1, "登録先の住所" %>
-    <%= f.collection_select :registered, current_customer.addresses, :id, :place %>
+    </div>
+    <p><%= f.collection_select :registered, current_customer.addresses, :id, :place %></p>
 
+
+  <div>
     <%= f.radio_button :address_number, 2 %>
     <%= f.label :address_number_2, "新しいお届け先" %>
-    <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
-    <%= f.text_field :postal_code %>
-    <%= f.label :place, "住所" %>
-    <%= f.text_field :place %>
-    <%= f.label :name, "宛名" %>
-    <%= f.text_field :name %>
-    <%= f.submit "確認画面へ進む" %>
+  </div>
+  <table class = "table">
+    <tr>
+      <td><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></td>
+      <td><%= f.text_field :postal_code %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :place, "住所" %></td>
+      <td><%= f.text_field :place %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :name, "宛名" %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+  </table>
+    <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-sm" %>
   <%end%>
+  </div>
+

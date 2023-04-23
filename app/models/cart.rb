@@ -3,6 +3,6 @@ class Cart < ActiveRecord::Base
   belongs_to :item
 
   def sum_price
-    item.texin_price*puanity
+    item.price* count
   end
 end
