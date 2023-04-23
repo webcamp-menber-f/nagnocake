@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
 
  before_action :authenticate_admin!
- 
+
   def index
     @items = Item.all.page(params[:page]).per(10)
   end
@@ -11,7 +11,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
+    @item = Item.new(item_params)
     if @item.save
        redirect_to admin_item_path(@item), notice: "You have updated book successfully."
     else
