@@ -2,39 +2,43 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @addresses = Address.all
   end
 
   def create
-    cart_item = current_customer.cart.all
     #Room fでは、cartでの名前で作成していますがわかりやすいようにあえてcart_itemにしています。
-    @order = current_customer.orders.new(order_params)
-    if @order.save
-        cart_item.each do |cart|
-        order_item = OrderItem.new
-        order_item.item_id = cart.item_id
-        order_item.order_id = @order.id
-        order_item.order_quantiy =cart.count
-        order_item.order_price = cart.item.price
-        order_item.save
-    end
-        redirect_to orders_confirm_path
-        cart_item.destroy_all
-    else
-        @order = Order.new(order_params)
-        render :new
-    end
+    order = Order.new(order_params)
+    order.customer_id = current_customer.id
+    order.save
+    @carts = current_customer.carts.all
+      @carts.each do |cart|
+        @order_item = OrderItem.new
+        @order_item.order_id = order.id
+        @order_item.item_id = cart.item.id
+        @order_item.money = cart.item.price
+        @order_item.count = cart.count
+        @order_item.status = 0
+        @order_item.save!
+      end
+
+    Cart.destroy_all
+    redirect_to orders_complete_path
+
   end
 
   def confirm
     @order = Order.new(order_params)
     if params[:order][:address_number] == "0"
-      @order.name = current_customer.first_name
+      @order.postal_code = current_customer.post
+      @order.name = current_customer.first_name + current_customer.last_name
       @order.place = current_customer.place
     elsif params[:order][:address_number] == "1"
+      #binding.pry
       if Address.exists?(id: params[:order][:registered])
         @order.name = Address.find(params[:order][:registered]).name
         @order.place = Address.find(params[:order][:registered]).place
         @order.postal_code = Address.find(params[:order][:registered]).postal_code
+
       else
         render :new
       end
@@ -43,12 +47,11 @@ class Public::OrdersController < ApplicationController
       if address_new.save
       else
         render :new
+      end
+
     end
-    else
-    redirect_to customers_mypage_path
-    end
-    @carts = current_customer.carts.all
-    @tatal = @carts.inject(0) { |sum, item| sum + item.sum_price }
+    @carts = current_customer.carts
+    @order_new = Order.new
   end
 
   def complete
@@ -56,18 +59,30 @@ class Public::OrdersController < ApplicationController
 
 
   def index
+    @orders = current_customer.orders.all
   end
 
   def show
+    @order = Order.find(params[:id])
+
+   # @order_items = OrderItem.where(order_id: params[:id])
+    #binding.pry
   end
 
  private
 
   def order_params
-    params.require(:order).permit(:name, :place, :totlal_price)
+    params.require(:order).permit(:name, :place, :total_price, :pay, :postage, :postal_code, :customer_id)
   end
 
   def address_params
     params.require(:order).permit(:name, :place, :postal_code)
+  end
+
+  def cartitem_nill
+    carts = current_customer.caers
+    if cart.blank?
+      redirect_to carts_path
+    end
   end
 end

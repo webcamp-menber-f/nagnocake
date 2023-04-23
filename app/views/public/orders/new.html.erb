@@ -1,17 +1,15 @@
 <h3>支払い方法</h3>
 
 <%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
+
   <%= f.radio_button :pay, Order.pays.key(0) %>
-  <%= f.label :pay_credit_card, Order.pays_i18n[:credit_card] %>
+  <%= f.label :pay, Order.pays_i18n[:credit_card] %>
 
   <%= f.radio_button :pay, Order.pays.key(1) %>
-  <%= f.label :pay_transfer, Order.pays_i18n[:transfer]%>
-
-  <%end%>
+<%= f.label :pay, Order.pays_i18n[:transfer]%>
 
 
 <h3>お届け先</h3>
-  <%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
     <%= f.radio_button :address_number, 0 %>
     <%= f.label :address_number_0, "ご自身の住所" %>
     <%= current_customer.place %>

@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2023_04_17_041357) do
     t.string "name", null: false
     t.integer "total_price", null: false
     t.integer "pay", null: false
-    t.integer "status", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

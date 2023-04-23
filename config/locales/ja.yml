@@ -24,5 +24,6 @@ ja:
         waiting_for_production: "製作待ち"
         in_production: "製作中"
         completon_of_production: "製作完了"
-
-
+  time:
+    formats:
+      default: "%Y/%m/%d "
