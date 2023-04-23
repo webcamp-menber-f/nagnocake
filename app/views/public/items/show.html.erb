@@ -1,13 +1,28 @@
-<p><%= image_tag(@item.get_image(200,200))%></p>
-<P>商品名：<%=@item.item_name %></P>
-<p>商品値段：￥<%=@item.price %></p>
-<%#if @item.status %>
+<div class="container">
+ <div class="row">
+  <div class="col-md-3">
+　　<%= render "public/goods_genres/goods_genre" ,goods_genres: @goods_genres %>
+　</div>
+　<div class="col-md-8">
+　 <div class="row justify-content-center">
+  <div class="col-md-8  mx-auto  mb-4 text-center">
+   <div class="card" style= "width: 400px;">
+ <%= image_tag(@item.get_image(400,400))%>
+ <div class="card-body">
+ <h2 class="card-title my-4">商品名：<%=@item.item_name %></h2>
+ <p class="card-text lead">商品値段：￥<%=@item.price %></p>
 <%= form_with(model: @cart,url: carts_path, method: :post,local: true)do |f| %>
- <P><%= f.label :count, "個数選択" %></p>
+    <div class="form-group">
+   <label class="my-2">個数選択：</label>
  <%= f.select :count,[1,2,3,4,5,6,7,8,9,10] %>
+     </div>
  <%= f.hidden_field :item_id, :value => @item.id %>
- <%= f.submit "カートに入れる" %>
- <%# end %>
-<% end %>
-
-  
+ <%= f.submit "カートに入れる",class: "btn btn-primary" %>
+    <% end %>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
