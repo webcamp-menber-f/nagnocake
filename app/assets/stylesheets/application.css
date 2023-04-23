@@ -25,3 +25,8 @@
 .card-img-top {
   max-width: 100%;
 }
+
+.pagination {
+  justify-content: center;
+}
+

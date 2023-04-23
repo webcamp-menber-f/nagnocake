@@ -12,8 +12,13 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <%= yield %>
+    <main class="border border-secondary mr-2 ml-2 mt-1 mb-3 pb-5">
+      <%= render 'layouts/header' %>
+     <div class="border border-secondary border-right-0 border-left-0 mb-4">
+
+      <%= yield %>
+     </div>
+    </main>
   </body>
 
 </html>
