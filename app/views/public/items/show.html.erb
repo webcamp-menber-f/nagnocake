@@ -10,7 +10,8 @@
  <%= image_tag(@item.get_image(400,400))%>
  <div class="card-body">
  <h2 class="card-title my-4">商品名：<%=@item.item_name %></h2>
- <p class="card-text lead">商品値段：￥<%=@item.price %></p>
+ <p class="card-text lead">商品値段：￥<%= (@item.price*1.10).to_i %></p>
+ <% if @item.status == false %>
 <%= form_with(model: @cart,url: carts_path, method: :post,local: true)do |f| %>
     <div class="form-group">
    <label class="my-2">個数選択：</label>
@@ -18,6 +19,7 @@
      </div>
  <%= f.hidden_field :item_id, :value => @item.id %>
  <%= f.submit "カートに入れる",class: "btn btn-primary" %>
+    <% end %>
     <% end %>
       </div>
      </div>
