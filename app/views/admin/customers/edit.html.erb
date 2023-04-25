@@ -1,0 +1,49 @@
+<div class='container'>
+  <h3><%= @customer.create_name %>さんの会員情報編集</h3>
+   <%= form_with model:@customer, url:admin_customer_path(@customer), method: :patch, local: true do |f| %>
+    <table class='table'>
+    <tr>
+      <th><label for="customer_id">会員ID</label></th>
+      <th><%= @customer.id %></th>
+    </tr>
+    <tr>
+      <th><label for="customer_create_name">氏名</label></th>
+      <th><%= f.text_field:first_name %>
+          <%= f.text_field:last_name %></th>
+    </tr>
+    <tr>
+      <th><label for="customer_create_name_f">フリガナ</label></th>
+      <th><%= f.text_field:first_name_f %>
+          <%= f.text_field:last_name_f %></th>
+    </tr>
+    <tr>
+      <th><label for="customer_post">郵便番号</label></th>
+      <th><%= f.text_field:post %></th>
+    </tr>
+    <tr>
+      <th><label for="customer_place">住所</label></th>
+      <th><%= f.text_field:place %></th>
+    </tr>
+    <tr>
+      <th><label for="customer_phone">電話番号</label></th>
+      <th><%= f.text_field:phone %></th>
+    </tr>
+    <tr>
+      <th><label for="customer_email">メールアドレス</label></th>
+      <th><%= f.text_field:email %></th>
+    </tr>
+    <tr>
+      <th><label for="customer_flag">会員ステータス</label></th>
+      <th><%= f.radio_button :flag, :true %>
+          <%= f.label :flag, "退会" %>
+          <%= f.radio_button :flag, :false %>
+          <%= f.label :flag, "有効" %></th>
+    </tr>
+    <tr>
+      <th></th>
+      <th><%= f.submit '変更を保存',class: 'btn btn-success' %></th>
+    </tr>
+    </table>
+    <% end %>
+
+</div>

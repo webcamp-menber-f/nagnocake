@@ -1,0 +1,78 @@
+<h1>注文情報確認</h1>
+
+<div class ="container">
+  <div class = "row">
+    <div class = "col-md-6">
+
+      <table class = "table">
+        <tr>
+          <td>イメージ</td>
+          <td>商品名</td>
+          <td>単価</td>
+          <td>数量</td>
+          <td>小計</td>
+        </tr>
+        <% @sum_total = 0 %>
+
+        <% @carts.each do |cart| %>
+
+        <tr>
+          <td>
+            <%= image_tag cart.item.get_image(200,200) %>
+          </td>
+          <td>
+            <%= cart.item.item_name %>
+          </td>
+          <td><%= (cart.item.price* 1.10).to_i %></td>
+          <td><%= cart.count %></td>
+            <% @sum = (cart.item.price * cart.count * 1.10).to_i %>
+          <td><%= @sum %></td>
+        </tr>
+          <% @sum_total += @sum %>
+        <%end%>
+      </table>
+    </div>
+
+    <div class = "col-md-4">
+      <table class = "table">
+        <tr>
+          <td>送料</td>
+          <td>800</td>
+        </tr>
+        <tr>
+          <td>商品合計</td>
+          <td><%= @sum_total %></td>
+        </tr>
+        <tr>
+          <td>請求合計</td>
+          <td><%= @sum_total + 800 %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div>
+    <h2>お支払い方法</h2>
+  </div>
+  <p>
+    <%= @order.pay_i18n %>
+  </p>
+  <div>
+    <h2>お届け先</h2>
+  </div>
+  <p>
+    <%= @order.place %>
+  </p>
+
+
+  <%= form_with model: @order_new, url: orders_path , local: true do |f| %>
+    <%= f.hidden_field :current_customer_id, value: current_customer.id %>
+    <%= f.hidden_field :pay, value: @order.pay %>
+    <%= f.hidden_field :postage, value: 800 %>
+    <%= f.hidden_field :postal_code, value: @order.postal_code %>
+    <%= f.hidden_field :total_price, value: @sum_total + 800 %>
+    <%= f.hidden_field :place, value: @order.place %>
+    <%= f.hidden_field :name, value: @order.name %>
+
+    <%= f.submit "注文を確定する", class: "btn btn-primary btn-sm" %>
+  <%end%>
+</div>

@@ -1,0 +1,144 @@
+<header>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <span class="lead"><%= link_to root_path, class: 'nav-link text-dark' do %>
+          <i class="fas fa-cheese"></i>
+          ながのcake
+          <% end %></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav ml-auto">
+      <% if admin_signed_in? %>
+        <% if request.fullpath.include? "/admin" %>
+         <li class="border rounded mr-2"><%= link_to admin_items_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-utensils"></i>
+            <% concat "商品一覧" %>
+            <% end %>
+         </li>
+         <li class="border rounded mr-2">
+            <%= link_to admin_customers_path, class: "nav-link text-dark" do %>
+              <i class="fas fa-users"></i>
+              <% concat "会員一覧" %>
+            <% end %>
+         </li>
+         <li class="border rounded mr-2">
+            <%= link_to admin_orders_path, class: "nav-link text-dark" do %>
+              <i class="fas fa-shopping-cart"></i>
+              <% concat "注文履歴一覧" %>
+            <% end %>
+         </li>
+         <li class="border rounded mr-2">
+            <%= link_to admin_goods_genres_path, class: "nav-link text-dark" do %>
+              <i class="fas fa-splotch"></i>
+              <% concat "ジャンル一覧" %>
+            <% end %>
+         </li>
+         <li class="border rounded">
+            <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-dark" do %>
+              <i class="fas fa-sign-out-alt"></i>
+              <% concat "ログアウト" %>
+            <% end %>
+         </li>
+        <% else %>
+         <li class="border rounded mr-2">
+           <%= link_to about_path,class: "nav-link text-dark" do %>
+              <i class="fas fa-tags"></i>
+              <% concat "About" %>
+           <% end %>
+         </li>
+         <li class="border rounded mr-2">
+           <%= link_to items_path, class: 'nav-link text-dark' do %>
+             <i class="fas fa-utensils"></i>
+             <% concat "商品一覧" %>
+          <% end %>
+         </li>
+         <li class="border rounded mr-2"><%= link_to new_customer_registration_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-user-edit"></i>
+            <% concat "新規登録" %>
+          <% end %>
+         </li>
+         <li class="border rounded mr-2">
+           <%= link_to new_customer_session_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-sign-in-alt"></i>
+            <% concat "ログイン" %>
+          <% end %>
+         </li>
+         <li class="border rounded">
+           <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
+            <i class="fas fa-sign-out-alt"></i>
+            <% concat "ログアウト" %>
+            <% end %>
+         </li>
+        <% end %>
+      <% elsif customer_signed_in? %>
+         <li class="border rounded mr-2">
+            <%= link_to customers_mypage_path, class: "nav-link text-dark" do %>
+              <i class="fas fa-user"></i>
+              <% concat "マイページ" %>
+            <% end %>
+         </li>
+         <li class="border rounded mr-2">
+            <%= link_to items_path, class: "nav-link text-dark" do %>
+              <i class="fas fa-utensils"></i>
+              <% concat "商品一覧" %>
+            <% end %>
+         </li>
+         <li class="border rounded mr-2">
+            <%= link_to carts_path, class: "nav-link text-dark" do %>
+              <i class="fas fa-shopping-cart"></i>
+              <% concat "カート" %>
+            <% end %>
+         </li>
+         <li class="border rounded">
+            <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-dark" do %>
+              <i class="fas fa-sign-out-alt"></i>
+              <% concat "ログアウト" %>
+            <% end %>
+         </li>
+        <% else %>
+         <li class="border rounded mr-2">
+           <%= link_to about_path,class: "nav-link text-dark" do %>
+              <i class="fas fa-tags"></i>
+              <% concat "About" %>
+           <% end %>
+         </li>
+         <li class="border rounded mr-2">
+           <%= link_to items_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-utensils"></i>
+            <% concat "商品一覧" %>
+          <% end %>
+         </li>
+         <li class="border rounded mr-2">
+           <%= link_to new_customer_registration_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-user-edit"></i>
+            <% concat "新規登録" %>
+          <% end %>
+         </li>
+         <li class="border rounded mr-2">
+           <%= link_to new_customer_session_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-sign-in-alt"></i>
+            <% concat "ログイン" %>
+          <% end %>
+         </li>
+         <li class="border rounded">
+           <%= link_to new_admin_session_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-users-cog"></i>
+            <% concat "管理者用" %>
+            <% end %>
+         </li>
+        <% end %>
+
+
+
+  </div>
+
+
+
+
+
+
+
+ </nav>
+</header>
