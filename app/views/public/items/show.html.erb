@@ -12,6 +12,7 @@
  <h2 class="card-title my-4">商品名：<%=@item.item_name %></h2>
  <p class="card-text lead">商品値段：￥<%= (@item.price*1.10).to_i %></p>
  <% if @item.status == false %>
+ <!--Defaultがfalseのため-->
 <%= form_with(model: @cart,url: carts_path, method: :post,local: true)do |f| %>
     <div class="form-group">
    <label class="my-2">個数選択：</label>
