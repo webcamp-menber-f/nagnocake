@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root :to => 'items#index'
+    get 'orders/history/:id' => 'orders#history', as: 'orders_history'
     resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :goods_genres, only:[:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
