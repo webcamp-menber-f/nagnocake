@@ -6,6 +6,7 @@
     <div>
       <%= f.radio_button :pay, Order.pays.key(0) %>
       <%= f.label :pay, Order.pays_i18n[:credit_card]%>
+
     </div>
     <div>
       <%= f.radio_button :pay, Order.pays.key(1) %>

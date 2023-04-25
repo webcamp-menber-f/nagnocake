@@ -27,7 +27,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    if params[:order][:pay].nil?
+      redirect_to new_order_path
+    end
+    if params[:order][:address_number].nil?
+      redirect_to new_order_path
+    end
     @order = Order.new(order_params)
+    #byebug
     if params[:order][:address_number] == "0"
       @order.postal_code = current_customer.post
       @order.name = current_customer.first_name + current_customer.last_name

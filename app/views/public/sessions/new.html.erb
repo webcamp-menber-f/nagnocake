@@ -1,3 +1,4 @@
+<div class = "container text-center mt-3">
 <div>
   <%= flash[:notice] %>
 </div>
@@ -26,8 +27,9 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン", class: "btn btn-primary btn-lg"  %>
   </div>
 <% end %>
 
-<p><%= render "public/shared/links" %>から新規登録を行ってください。</p>
+<p><%= render "public/shared/links", class: "btn btn-success btn-lg" %>から新規登録を行ってください。</p>
+</div>
