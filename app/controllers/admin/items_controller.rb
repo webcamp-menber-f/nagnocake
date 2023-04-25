@@ -13,7 +13,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-       redirect_to admin_item_path(@item), notice: "You have updated book successfully."
+       redirect_to admin_item_path(@item)
     else
        render new
     end
@@ -39,7 +39,7 @@ class Admin::ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-      redirect_to admin_items_path, notice: "Item was successfully deleted."
+      redirect_to admin_items_path
   end
 
 

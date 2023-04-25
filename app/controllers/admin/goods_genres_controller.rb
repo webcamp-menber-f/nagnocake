@@ -12,7 +12,7 @@ class Admin::GoodsGenresController < ApplicationController
   def create
     @goods_genre = GoodsGenre.new(goods_genre_params)
     @goods_genre.save
-          redirect_to admin_goods_genres_path,  notice: "You have updated book successfully."
+          redirect_to admin_goods_genres_path
   end
 
   def edit
@@ -22,7 +22,7 @@ class Admin::GoodsGenresController < ApplicationController
   def update
     @goods_genre = GoodsGenre.find(params[:id])
     if @goods_genre.update(goods_genre_params)
-      redirect_to admin_goods_genres_path,  notice: "You have updated book successfully."
+      redirect_to admin_goods_genres_path
     else
       render edit
     end
@@ -31,7 +31,7 @@ class Admin::GoodsGenresController < ApplicationController
   def destroy
     @goods_genre = GoodsGenre.find(params[:id])
     @goods_genre.destroy
-      redirect_to admin_goods_genres_path, notice: "Item was successfully deleted."
+      redirect_to admin_goods_genres_path
   end
 
   private

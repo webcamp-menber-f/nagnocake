@@ -23,7 +23,6 @@ class Admin::OrdersController < ApplicationController
         order_item.update(status: :waiting_for_production)
        end
       end
-      flash[:notice] = "注文ステータスを更新しました。"
       redirect_to admin_order_path(@order)
     else
       render :show

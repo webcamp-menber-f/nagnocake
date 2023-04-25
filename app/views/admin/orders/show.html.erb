@@ -31,7 +31,7 @@
      <% end %>
     </div>
    </div>
-   
+
    <div class="row">
     <div class="col-8">
        <table class="table">
@@ -52,10 +52,12 @@
              <th class="text-center text-md-end"><%= (order_item.money.to_i*1.1).floor.to_s(:delimited) %></th>
              <th><%= order_item.count %></th>
              <th class="text-center text-md-end"><%= ((order_item.money.to_i * 1.1 * order_item.count).floor).to_s(:delimited) %></th>
-              <%= form_with model:order_item, url:admin_order_item_path(order_item.id), method: :patch, local: true do |f| %>
-             <th><%= f.select :status, OrderItem.statuses.keys.map { |s| [t("enums.order_item.status.#{s}"), s] }, {}, class: "select-default" %>
-              <%= f.submit "更新", class: 'btn btn-primary' %></th>
+             <th>
+              <%= form_with model:order_item, url:admin_order_item_path(order_item.id), method: :patch do |f| %>
+              <%= f.select :status, OrderItem.statuses.keys.map { |s| [t("enums.order_item.status.#{s}"), s] }, {}, class: "select-default" %>
+              <%= f.submit "更新", class: 'btn btn-primary' %>
               <% end %>
+             </th>
            </tr>
           <% end %>
          </tbody>
