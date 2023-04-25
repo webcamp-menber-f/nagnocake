@@ -25,7 +25,7 @@
           </td>
           <td><%= (cart.item.price* 1.10).to_i %></td>
           <td><%= cart.count %></td>
-            <% @sum = cart.item.price * cart.count %>
+            <% @sum = (cart.item.price * cart.count * 1.10).to_i %>
           <td><%= @sum %></td>
         </tr>
           <% @sum_total += @sum %>
@@ -41,7 +41,7 @@
         </tr>
         <tr>
           <td>商品合計</td>
-          <td><%= @sum_total %></td>
+          <td><%= @sum_total. %></td>
         </tr>
         <tr>
           <td>請求合計</td>
