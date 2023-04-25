@@ -43,5 +43,5 @@ private
   def address_params
     params.require(:address).permit(:place, :postal_code ,:name)
   end
-  
+
 end
