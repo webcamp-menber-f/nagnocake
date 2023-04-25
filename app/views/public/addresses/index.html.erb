@@ -21,20 +21,20 @@
     <%= f.label :postal_code,"郵便番号（ハイフンなし）", class: "h5" %>
     <%= f.text_field :postal_code,class: "form-control", required: true %>
     </div>
-    
+
       <div class="form-group">
        <%= f.label :place,"住所",class: "h5" %>
        <%= f.text_area :place, class: "form-control", required: true %>
       </div>
-      
+
        <div class="form-group">
           <%= f.label :name,"宛名", class: "h5" %>
           <%= f.text_field :name, class: "form-control", required: true %>
       </div>
-      
+
     <p><%= f.submit '新規登録',class: "btn btn-primary" %></p>
   <% end %>
-  
+
 <table class= "table mt-5">
   <thead class="thead-light">
    <tr>
@@ -50,8 +50,8 @@
           <td><%= address.postal_code %></td>
           <td><%= address.place %></td>
           <td><%= address.name %></td>
-          <td><%= link_to"Edit",edit_address_path(address.id),class: "btn btn-success btn-lg"%></td>
-          <td><%= link_to"Destroy",address_path(address.id),method: :delete,"data-confirm" => "Are you sure?", class: "btn btn-danger btn-lg" %></td>
+          <td><%= link_to"変更",edit_address_path(address.id),class: "btn btn-success btn-lg"%></td>
+          <td><%= link_to"削除",address_path(address.id),method: :delete,"data-confirm" => "Are you sure?", class: "btn btn-danger btn-lg" %></td>
         </tr>
        <% end %>
       </tbody>

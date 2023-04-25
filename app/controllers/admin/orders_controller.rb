@@ -8,6 +8,7 @@ class Admin::OrdersController < ApplicationController
   
   def history
     @orders = Customer.find(params[:id]).orders.page(params[:page]).per(10)
+    @order = Order.find(params[:id])
   end
 
   def show

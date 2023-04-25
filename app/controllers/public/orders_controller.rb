@@ -1,7 +1,11 @@
 class Public::OrdersController < ApplicationController
 
   def new
+   if current_customer.carts.empty?
+    redirect_to carts_path
+   else
     @order = Order.new
+   end
     @addresses = Address.all
   end
 
